@@ -4,8 +4,7 @@ import Profile from './passingprops/Profile';
 function App() {
   return (
     <div className="App">
-      
-     <Profile/>
+      <Profile/>
     </div>
   );
 }
