@@ -1,11 +1,11 @@
 import './App.css';
-import MaintainingState from './maintaingState/MaintainingState';
+import MainTaskListDisplay from './taskList/MainTaskListDisplay';
 
 
 function App() {
   return (
-    <div className="App">
-      <MaintainingState/>
+    <div style={{width:"100%",minWidth:"600px"}}>
+    < MainTaskListDisplay/>
     </div>
   );
 }
