@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
-import { Row, Col, Button, Input, Checkbox } from 'antd'
+import { Row, Col, Button, Input, Checkbox, message } from 'antd'
 
 const TasksFile = () => {
+
     const initialState = [
         { id: 1, text: "Learn ReactJs", done: false },
         { id: 2, text: "Learn MongoDB", done: false },
@@ -36,6 +37,7 @@ const TasksFile = () => {
     }
 
     const handleAddedTaskChanges=()=>{
+        if (text !== ""){
         setTasks([
             ...tasks,
             {
@@ -45,6 +47,10 @@ const TasksFile = () => {
             }
         ])
         setText('')
+    }
+    else{
+        message.warning('Kindly add the task to proceed')
+    }
     }
     return (
         <Row gutter={[0, 16]} style={{ display: "flex", flexDirection: "column", width: "100%", marginTop: "3em", alignItems: "center", justifyContent: "center", minWidth: "600px" }}>
@@ -94,7 +100,7 @@ const Task = ({ tasks, onEditChanges, onDeleteChanges }) => {
 
                         </Col>
                         <Col xs={4} sm={4} md={4} lg={4} xl={4} xxl={4}>
-                            <Button danger onClick={()=>onDeleteChanges(task.id)}>Delete</Button>
+                            <Button danger  disabled={task.done ? false : true}onClick={()=>onDeleteChanges(task.id)}>Delete</Button>
                         </Col>
                     </Row>
                 ))
@@ -122,7 +128,7 @@ const ShowTaskDisplay = ({ task, onEditChanges }) => {
 
             </Col>
             <Col xs={4} sm={4} md={4} lg={4} xl={4} xxl={4}>
-                <Button type="primary" ghost onClick={() => setShowText(!showText)}>{showText ? "Save" : "Edit"}</Button>
+                <Button type="primary" ghost disabled= {task.done ? false: true}onClick={() => setShowText(!showText)}>{showText ? "Save" : "Edit"}</Button>
             </Col>
         </Row>
     )
